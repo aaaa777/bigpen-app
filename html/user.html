@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Jumbotron example · Bootstrap v5.0</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/jumbotron/">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <!-- <script src="../assets/utils.js"></script> -->
+    
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>     -->
+    
+    <!-- Bootstrap core CSS -->
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+  </head>
+  <body>
+    
+<main>
+  <div class="container py-4">
+    <header class="pb-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" class="me-2" viewBox="0 0 118 94" role="img"><title>Bootstrap</title><path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z" fill="currentColor"></path></svg>
+        <span class="fs-4">Jumbotron example</span>
+      </a>
+    </header>
+
+    <div class="p-5 mb-4 bg-light rounded-3">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Custom jumbotron</h1>
+        <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
+        <button class="btn btn-primary btn-lg" type="button">Example button</button>
+      </div>
+    </div>
+
+    <div class="row align-items-md-stretch">
+      <div class="col-md-6">
+        <div class="h-100 p-5 bg-light border rounded-3">
+          <h2>Add borders</h2>
+          <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
+          <button class="btn btn-outline-secondary" type="button">Example button</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <nav class="nav">
+          <li class="nav-link active" aria-current="page" href="#">一般</a>
+          <li class="nav-link" href="#">詳細</a>
+          <li class="nav-link" href="#">履歴</a>
+          <li class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">フレンド</a>
+        </nav>
+        <div class="h-100 bg-light border rounded-3">
+          <!-- <h2>現在のスコア</h2> -->
+          <div class="h-100 col-md-10 col-12">
+            <canvas id="myRaderChart"></canvas>
+          </div>
+          <button class="btn btn-outline-light" type="button">Example button</button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="pt-3 mt-4 text-muted border-top">
+      &copy; 2021
+    </footer>
+  </div>
+</main>
+
+
+    
+  </body>
+</html>
+<script>
+  var ctx = document.getElementById("myRaderChart");
+  var myRadarChart = new Chart(ctx, {
+      type: 'radar', 
+      data: { 
+          labels: ["セキュリティ", "ソフト・ハード", "マネジメント", "アルゴリズム", "システム開発"],
+          //labels: ["","","","",""],
+          datasets: [
+            // {
+            //   label: '現在のスコア',
+            //   data: [92, 72, 86, 74, 86],
+            //   backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
+            //   borderColor: Utils.CHART_COLORS.red,
+            //   borderWidth: 1,
+            //   pointBackgroundColor: 'RGB(46,106,177)'
+            // },
+           {
+              label: '合格スコア',
+              data: [73, 95, 80, 87, 10],
+              backgroundColor: 'RGBA(115,255,25, 0.5)',
+              borderColor: 'RGBA(115,255,25, 1)',
+              borderWidth: 1,
+              pointBackgroundColor: 'RGB(46,106,177)'
+          }]
+      },
+      options: {
+          // title: {
+          //     display: true,
+          //     text: '成績'
+          // },
+          scales:{
+              r: {
+                pointLabels: {
+                  font: {
+                    size: 20
+                  }
+                }
+              },
+              taicks:{
+                  suggestedMin: 0,
+                  suggestedMax: 100,
+                  stepSize: 25,
+                  callback: function(value, index, values){
+                      return  value +  '点'
+                  },
+                  ticks: {
+                    font: {
+                      size: 20
+                    }
+                  },
+                  font: {
+                    size: 10
+                  },
+                  pointLabels: {
+                    fontSize: 30
+                  }
+                },
+              
+          },
+          plugins: {
+            legend: {
+              // display: false,
+            //   labels: {
+            //     font: {
+            //       size: 20
+            //     },
+            //     defaultFontSize: 100,
+                
+            //   }
+            },
+          },
+      }
+  });
+</script>
