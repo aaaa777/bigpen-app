@@ -1,5 +1,5 @@
 CREATE TABLE bigpen_quizMaster (
-    quiz_id int PRIMARY KEY AUTO_INCREMENT,
+    quiz_id serial PRIMARY KEY,
     category_id int NOT NULL,
     quiz_text TEXT,
     FOREIGN KEY(category_id)
