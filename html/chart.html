@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+        <meta charset="utf-8">
+        <title>グラフ</title> 
+    </head>
+    <body>
+        <h1>レーダーチャート</h1>
+        <canvas id="myRaderChart"></canvas>
+        <!-- CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+        
+        <script>
+        var ctx = document.getElementById("myRaderChart");
+        var myRadarChart = new Chart(ctx, {
+            type: 'radar', 
+            data: { 
+                labels: ["基礎理論", "コンピュータ", "システム開発", "セキュリティ", "マネジメント", "ストラテジ"],
+                datasets: [{
+                    label: 'Aさん',
+                    data: [92, 72, 86, 74, 86, 66],
+                    backgroundColor: 'RGBA(225,95,150, 0.5)',
+                    borderColor: 'RGBA(225,95,150, 1)',
+                    borderWidth: 1,
+                    pointBackgroundColor: 'RGB(46,106,177)'
+                }, {
+                    label: 'Bさん',
+                    data: [73, 95, 80, 87, 79, 2],
+                    backgroundColor: 'RGBA(115,255,25, 0.5)',
+                    borderColor: 'RGBA(115,255,25, 1)',
+                    borderWidth: 1,
+                    pointBackgroundColor: 'RGB(46,106,177)'
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: '試験成績'
+                },
+                scale:{
+                    ticks:{
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        stepSize: 10,
+                        callback: function(value, index, values){
+                            return  value +  '点'
+                        }
+                    }
+                }
+            }
+        });
+        </script>
+    </body>
+</html>
