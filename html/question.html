@@ -12,7 +12,7 @@
         <!-- エフェクト用オーバーレイ -->
         <div id="overlay" class="text-center">
             <div class="diag-box container bg-white p-4 mt-4">
-                <div class="comment">
+                <div id="comment" class="comment">
                     コメント<br>
                     こめんと<br>
                     こめんと
@@ -76,11 +76,13 @@
 
 <script>
 
-function init() {
-    var answered = false;
-    var qid = dummy_get_answer();
-    var q_count = dummy_get_qcount();
+var comment_ele = document.getElementById("comment");
+var answered = false;
+var qid, q_count;
 
+function init() {
+    qid = dummy_get_answer();
+    q_count = dummy_get_qcount();
     // オーバレイを開閉する関数
     const overlay = document.getElementById('overlay');
 
@@ -96,6 +98,8 @@ function init() {
     reset();
 }
 
+
+
 function onAnswer(cid) {
     if(answered){
         return;
@@ -103,8 +107,7 @@ function onAnswer(cid) {
     answered = true;
 
     // エフェクトなど
-    let res, aid, com = dummy_get_answer(qid, cid);
-    console.log(res,aid,com);
+    let [res, aid, com] = dummy_get_answer(qid, cid);
 
     if(res) {
         drawInfoGood(aid, com);
@@ -119,40 +122,31 @@ function onAnswer(cid) {
     overlayOn();
 }
 
+
+
 function onNextQuestion() {
     overlayOff();
     reset();
 }
 
+
+
 function reset() {
     answered = false;
-    qid = dummy_get_answer();
+    qid = dummy_get_question();
     q_count = dummy_get_qcount();
 }
 
-function dummy_get_qcount() {
-    return 12;
-}
 
-function dummy_get_answer(question_id, choise_num) {
-    let res = true;
-    let aid = 2;
-    let comment = "解説：～～～";
-    return res, aid, comment;
-}
-
-function dummy_get_question() {
-    let qid = 2;
-    return qid;
-}
 
 function drawInfoGood(aid, com) {
-    
+    comment_ele.innerText = "正解：" + com;
 }
 
 function drawInfoBad(aid, com) {
-
+    comment_ele.innerText = "不正解：" + com;
 }
+
 
 
 function overlayOn() {
@@ -161,6 +155,25 @@ function overlayOn() {
 
 function overlayOff() {
     overlay.classList.remove('overlay-on');
+}
+
+
+
+function dummy_get_qcount() {
+    return 12;
+}
+
+function dummy_get_answer(question_id, choise_num) {
+    let res = true;
+    let aid = 2;
+    let comment = "解説～～～";
+    return [res, aid, comment];
+}
+
+
+function dummy_get_question() {
+    let qid = 2;
+    return qid;
 }
 
 init();
