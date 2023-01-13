@@ -1,0 +1,32 @@
+main {
+    min-height: 100vh;
+}
+
+.choice:hover {
+    background-color: lightgray;
+    color: white;
+}
+
+
+.bg01 {
+    background-position: bottom;
+    background-color: lightskyblue;
+    /*  background-image: url("https://cdn.discordapp.com/attachments/989268337886367754/1063414156897828874/logiteca7_morning_city_centre_d6a7015d-e95f-44f4-8541-73578f868acb.png"); */
+}
+
+#overlay{
+    position: fixed;
+    top:0;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    visibility: hidden;
+    opacity: 0; 
+    background: rgba(0,0,0,0.6);
+    transition: all 0.5s ease-out;
+}
+
+#overlay.overlay-on{
+    visibility: visible;
+    opacity: 1;
+}
