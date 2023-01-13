@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../assets/dist/css/main.css" rel="stylesheet">
+        <!-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->
+    </head>
+
+    <body>
+        <!-- エフェクト用オーバーレイ -->
+        <div id="overlay" class="text-center">
+            <div class="diag-box container bg-white p-4 mt-4">
+                <div class="comment">
+                    コメント<br>
+                    こめんと<br>
+                    こめんと
+                </div>
+                <div class="choice next-question border round bg-light mt-4">次の問題へ</div>
+            </div>
+        </div>
+            
+        <!-- 要素全体 -->
+        <main class="bg01 p-6">
+            <!-- 内側 -->
+            <div class="container bg-light" >
+
+                <div class="spacer p-2"></div>
+                <!-- キャラクターと背景の枠 -->
+                <div class="chara-frame bg-info mx-4 p-4">
+                    <!-- キャラクター画像 -->
+                    <div class="chara-image text-center">
+                        <img src="../assets/img/bshot1_charat.png">
+                    </div>
+                </div>
+
+                <div class="spacer p-2"></div>
+            
+                <!-- 問題文と回答エリア -->
+                <div class="container">
+                    <!-- 問題文 -->
+                    <div class="sentence border rounded p-2 mb-2">
+                        ３行くらいの問題ぶんぶんぶん３行くらいの問題ぶんぶんぶん<br>
+                        ３行くらいの問題ぶんぶんぶん３行くらいの問題ぶんぶんぶん<br>
+                        ３行くらいの問題ぶんぶんぶん３行くらいの問題ぶんぶんぶん
+                    </div>
+                    <!-- 回答選択肢 -->
+                    <div class="choices row">
+                        <div class="col-md-6">
+                            <div class="choice border rounded p-2 my-2" onclick="onAnswer(1);">
+                                選択肢１選択肢１選択肢１選択肢１選択肢１選択肢１選択肢１選択肢１選択肢１選択肢１選択肢１選択肢１選択肢１選択肢１選択肢１
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="choice border rounded p-2 my-2" onclick="onAnswer(2);">
+                                選択肢２選択肢２選択肢２選択肢２選択肢２選択肢２選択肢２<br>選択肢２選択肢２選択肢２選択肢２選択肢２選択肢２選択肢２
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="choice border rounded p-2 my-2" onclick="onAnswer(1);">
+                                選択肢３
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="choice border rounded p-2 my-2" onclick="onAnswer(1);">
+                                選択肢４選択肢４選択肢４選択肢４選択肢４選択肢４選択肢４選択肢４選択肢４選択肢４選択肢４選択肢４選択肢４選択肢４
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
+
+<script>
+
+function init() {
+    var answered = false;
+    var qid = dummy_get_answer();
+    var q_count = dummy_get_qcount();
+
+    // オーバレイを開閉する関数
+    const overlay = document.getElementById('overlay');
+
+    // // 指定した要素に対して上記関数を実行するクリックイベントを設定
+    // const choiceButtons = document.getElementsByClassName('choice');
+    // for(let i = 0; i < choiceButtons.length; i++) {
+    //     choiceButtons[i].addEventListener('click', onAnswer, false);
+    // }
+
+    const nextQuestion = document.getElementsByClassName('next-question')[0];
+    nextQuestion.addEventListener('click', onNextQuestion, false);
+
+    reset();
+}
+
+function onAnswer(cid) {
+    if(answered){
+        return;
+    }
+    answered = true;
+
+    // エフェクトなど
+    let res, aid, com = dummy_get_answer(qid, cid);
+    console.log(res,aid,com);
+
+    if(res) {
+        drawInfoGood(aid, com);
+    }
+    
+    if(!res) {
+        drawInfoBad(aid, com);
+    }
+
+    
+    // 解説表示
+    overlayOn();
+}
+
+function onNextQuestion() {
+    overlayOff();
+    reset();
+}
+
+function reset() {
+    answered = false;
+    qid = dummy_get_answer();
+    q_count = dummy_get_qcount();
+}
+
+function dummy_get_qcount() {
+    return 12;
+}
+
+function dummy_get_answer(question_id, choise_num) {
+    let res = true;
+    let aid = 2;
+    let comment = "解説：～～～";
+    return res, aid, comment;
+}
+
+function dummy_get_question() {
+    let qid = 2;
+    return qid;
+}
+
+function drawInfoGood(aid, com) {
+    
+}
+
+function drawInfoBad(aid, com) {
+
+}
+
+
+function overlayOn() {
+    overlay.classList.add('overlay-on');
+}
+
+function overlayOff() {
+    overlay.classList.remove('overlay-on');
+}
+
+init();
+</script>
