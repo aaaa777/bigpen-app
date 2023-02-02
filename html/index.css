@@ -1,0 +1,38 @@
+.row {
+    display: flex;
+}
+
+.logo {
+    flex: 1;
+}
+
+.headergap {
+    flex: 2;
+}
+
+.signout {
+    flex: 1;
+}
+
+.fe {
+    font-size: large;
+    text-align: center;
+    color: greenyellow;
+}
+
+.quiz {
+    font-size: xx-large;
+    text-align: center;
+    color: green;
+}
+
+.startquiz {
+    font-size: x-large;
+    text-align: center;
+}
+
+.userinfo {
+    font-size: large;
+    text-align: center;
+    color: cyan;
+}
